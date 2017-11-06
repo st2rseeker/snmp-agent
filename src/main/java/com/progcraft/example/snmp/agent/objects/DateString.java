@@ -1,4 +1,4 @@
-package com.progcraft.example.snmp.objects;
+package com.progcraft.example.snmp.agent.objects;
 
 import org.snmp4j.agent.MOAccess;
 import org.snmp4j.smi.OID;

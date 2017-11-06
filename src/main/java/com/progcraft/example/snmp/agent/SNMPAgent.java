@@ -1,4 +1,4 @@
-package com.progcraft.example.snmp;
+package com.progcraft.example.snmp.agent;
 
 import org.snmp4j.TransportMapping;
 import org.snmp4j.agent.*;

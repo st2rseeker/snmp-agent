@@ -1,6 +1,6 @@
-package com.progcraft.example.snmp;
+package com.progcraft.example.snmp.agent;
 
-import com.progcraft.example.snmp.objects.CustomManagedObject;
+import com.progcraft.example.snmp.agent.objects.CustomManagedObject;
 import org.snmp4j.agent.MOAccess;
 import org.snmp4j.agent.mo.MOAccessImpl;
 import org.snmp4j.agent.mo.MOScalar;

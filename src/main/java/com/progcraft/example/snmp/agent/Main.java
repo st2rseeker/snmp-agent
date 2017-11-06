@@ -1,4 +1,4 @@
-package com.progcraft.example.snmp;
+package com.progcraft.example.snmp.agent;
 
 public class Main {
 
@@ -17,8 +17,13 @@ public class Main {
 
             System.out.println("SNMP agent listening on port 12345");
 
-        } catch (Exception e) {
+            // just keep running the process
+            // in a regular scenario the agent will be instantiated in a living process
+            while(true) {
+                Thread.sleep(10000);
+            }
 
+        } catch (Exception e) {
             System.out.println("Failed to start SNMP agent on port 12345 : " + e.getMessage());
         }
     }

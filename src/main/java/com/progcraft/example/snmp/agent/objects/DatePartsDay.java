@@ -1,4 +1,4 @@
-package com.progcraft.example.snmp.objects;
+package com.progcraft.example.snmp.agent.objects;
 
 import org.snmp4j.agent.MOAccess;
 import org.snmp4j.smi.Integer32;
@@ -7,16 +7,16 @@ import org.snmp4j.smi.Variable;
 
 import java.time.LocalDate;
 
-public class DatePartsYear<V extends Variable> extends CustomManagedObject {
+public class DatePartsDay<V extends Variable> extends CustomManagedObject {
 
-    public DatePartsYear(OID oid, MOAccess access) {
+    public DatePartsDay(OID oid, MOAccess access) {
         super(oid, access, null);
     }
 
     @Override
     public V getValue() {
 
-        int result = LocalDate.now().getYear();
+        int result = LocalDate.now().getDayOfMonth();
 
         return (V) (new Integer32(result));
     }
