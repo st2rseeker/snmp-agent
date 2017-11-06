@@ -1,0 +1,96 @@
+CUSTOM-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY, snmpModules, OBJECT-TYPE, Integer32, enterprises FROM SNMPv2-SMI
+    OBJECT-GROUP, MODULE-COMPLIANCE FROM SNMPv2-CONF
+;
+
+customMIBv2 MODULE-IDENTITY
+    LAST-UPDATED "201711060000Z"
+    ORGANIZATION "E-Corp"
+    CONTACT-INFO "E-mail: info@e-corp.com"
+    DESCRIPTION "Custom SNMP api MIB module"
+    REVISION "201711060000Z"
+    DESCRIPTION "Initial definition"
+    ::= { snmpModules 12345 }
+
+customMIBConformance OBJECT IDENTIFIER ::= { customMIBv2 2 }
+
+customMIBGroups OBJECT IDENTIFIER ::= { customMIBConformance 1 }
+
+customMIBGroup OBJECT-GROUP
+    OBJECTS { generalGreeting,
+              generalRandom,
+              dateString,
+              datePartsDay,
+              datePartsMonth,
+              datePartsYear }
+    STATUS current
+    DESCRIPTION "All the available objects"
+    ::= { customMIBGroups 1 }
+
+customMIBCompliances OBJECT IDENTIFIER ::= { customMIBConformance 2 }
+
+customMIBCompliance MODULE-COMPLIANCE
+    STATUS current
+    DESCRIPTION "Custom MIB module compliance"
+    MODULE
+    GROUP customMIBGroup
+    DESCRIPTION "The group of all available objects"
+    ::= { customMIBCompliances 1 }
+
+custom OBJECT IDENTIFIER ::= { enterprises 12345 }
+
+-- general
+
+general OBJECT IDENTIFIER ::= { custom 1 }
+
+generalGreeting OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "General Hello World greeting"
+    ::= { general 1 }
+
+generalRandom OBJECT-TYPE
+    SYNTAX Integer32
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "A random integer"
+    ::= { general 2 }
+
+-- date
+
+date OBJECT IDENTIFIER ::= { custom 2 }
+
+dateString OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "The current ISO date"
+    ::= { date 1 }
+
+dateParts OBJECT IDENTIFIER ::= { date 2 }
+
+datePartsDay OBJECT-TYPE
+    SYNTAX Integer32
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "Day of month"
+    ::= { dateParts 1 }
+
+datePartsMonth OBJECT-TYPE
+    SYNTAX Integer32
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "Month of year"
+    ::= { dateParts 2 }
+
+datePartsYear OBJECT-TYPE
+    SYNTAX Integer32
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION "Year"
+    ::= { dateParts 3 }
+
+END
