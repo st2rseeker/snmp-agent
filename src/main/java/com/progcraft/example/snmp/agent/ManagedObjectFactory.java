@@ -11,8 +11,8 @@ import org.snmp4j.smi.Variable;
 
 public class ManagedObjectFactory {
 
-    public static MOScalar createReadOnly(String oid, Object value) {
-        return getManagedObject(new OID(oid), MOAccessImpl.ACCESS_READ_ONLY, value);
+    public static MOScalar createReadOnly(String oid, String value) {
+        return getCustomManagedObject(new OID(oid), MOAccessImpl.ACCESS_READ_ONLY, value);
     }
 
     public static MOScalar createReadWrite(String oid, Object value) {
@@ -47,7 +47,7 @@ public class ManagedObjectFactory {
 
         try {
 
-            mo = (CustomManagedObject) Class.forName("com.progcraft.example.snmp.objects." + capitalize(objectName))
+            mo = (CustomManagedObject) Class.forName("com.progcraft.example.snmp.agent.objects." + capitalize(objectName))
                     .getConstructor(OID.class, MOAccess.class)
                     .newInstance(oid, access);
 
